@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /admin/
+Disallow: /ادمن
+Disallow: /ادمن/
+Disallow: /%D8%A7%D8%AF%D9%85%D9%86
+Disallow: /%D8%A7%D8%AF%D9%85%D9%86/
+
+Sitemap: /sitemap.xml
+

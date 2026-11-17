@@ -1,0 +1,276 @@
+{
+  "entities": {
+    "System": {
+      "title": "System",
+      "description": "A JOYA.TODAY business software system (Core or Additional).",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9_\\-]+$",
+          "maxLength": 128,
+          "description": "Unique slug identifier for the system."
+        },
+        "name": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 100,
+          "description": "Display name in English (e.g., JOYA POS)."
+        },
+        "slug": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 100,
+          "description": "URL-friendly slug."
+        },
+        "category": {
+          "type": "string",
+          "enum": ["core", "additional"],
+          "description": "Whether the system is a Core or Additional application."
+        },
+        "order": {
+          "type": "integer",
+          "description": "Display index order."
+        },
+        "color": {
+          "type": "string",
+          "pattern": "^#[0-9a-fA-F]{6}$",
+          "description": "Brand hex accent color for the system."
+        },
+        "shortDesc": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 300,
+          "description": "Concise Arabic summary for cards and registry rows."
+        },
+        "description": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 3000,
+          "description": "Full Arabic description shown on the system detail page."
+        },
+        "features": {
+          "type": "array",
+          "description": "List of key system capabilities (max 15)."
+        },
+        "status": {
+          "type": "string",
+          "enum": ["available", "coming_soon"],
+          "description": "Availability status of the system."
+        },
+        "platforms": {
+          "type": "array",
+          "description": "Supported platforms from windows, android, ios, web."
+        },
+        "downloadUrl": {
+          "type": "string",
+          "maxLength": 500,
+          "description": "Direct installer download URL or built-in package key."
+        },
+        "logoUrl": {
+          "type": "string",
+          "maxLength": 350000,
+          "description": "Optional system logo image URL or compressed base64 data URI."
+        },
+        "packages": {
+          "type": "array",
+          "description": "Subscription packages with duration and price."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Last modification server timestamp."
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "slug",
+        "category",
+        "order",
+        "color",
+        "shortDesc",
+        "description",
+        "features",
+        "status",
+        "platforms",
+        "downloadUrl",
+        "packages",
+        "updatedAt"
+      ]
+    },
+    "Lead": {
+      "title": "Lead",
+      "description": "Customer trial download, purchase order, or pre-order request.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9_\\-]+$",
+          "maxLength": 128
+        },
+        "fullName": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 120
+        },
+        "businessName": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 160
+        },
+        "phone": {
+          "type": "string",
+          "minLength": 7,
+          "maxLength": 30
+        },
+        "governorate": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 80
+        },
+        "systemId": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 128
+        },
+        "systemName": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 120
+        },
+        "requestType": {
+          "type": "string",
+          "enum": ["download", "purchase", "preorder"]
+        },
+        "packageId": {
+          "type": "string",
+          "maxLength": 128
+        },
+        "packageName": {
+          "type": "string",
+          "maxLength": 160
+        },
+        "followUpStatus": {
+          "type": "string",
+          "enum": ["new", "contacted", "converted", "archived"]
+        },
+        "notes": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "fullName",
+        "businessName",
+        "phone",
+        "governorate",
+        "systemId",
+        "systemName",
+        "requestType",
+        "followUpStatus",
+        "createdAt"
+      ]
+    },
+    "AdminUser": {
+      "title": "AdminUser",
+      "description": "Authorized admin or sub-admin account allowed to access /admin.",
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9_.+\\-@]+$",
+          "maxLength": 160
+        },
+        "displayName": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 100
+        },
+        "role": {
+          "type": "string",
+          "enum": ["super_admin", "sub_admin"]
+        },
+        "addedBy": {
+          "type": "string",
+          "maxLength": 160
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["email", "displayName", "role", "createdAt"]
+    },
+    "SocialSettings": {
+      "title": "SocialSettings",
+      "description": "Public social media links configured from the admin dashboard.",
+      "type": "object",
+      "properties": {
+        "youtube": {
+          "type": "string",
+          "maxLength": 500,
+          "description": "YouTube channel URL or empty string."
+        },
+        "facebook": {
+          "type": "string",
+          "maxLength": 500,
+          "description": "Facebook page URL or empty string."
+        },
+        "tiktok": {
+          "type": "string",
+          "maxLength": 500,
+          "description": "TikTok profile URL or empty string."
+        },
+        "linkedin": {
+          "type": "string",
+          "maxLength": 500,
+          "description": "LinkedIn company/profile URL or empty string."
+        },
+        "instagram": {
+          "type": "string",
+          "maxLength": 500,
+          "description": "Instagram profile URL or empty string."
+        },
+        "whatsapp": {
+          "type": "string",
+          "maxLength": 500,
+          "description": "WhatsApp chat link (https://wa.me/...) or empty string."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Last modification server timestamp."
+        }
+      },
+      "required": ["youtube", "facebook", "tiktok", "linkedin", "instagram", "whatsapp", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "/systems/{systemId}": {
+      "schema": { "$ref": "#/entities/System" },
+      "description": "Catalog of JOYA.TODAY software systems."
+    },
+    "/leads/{leadId}": {
+      "schema": { "$ref": "#/entities/Lead" },
+      "description": "Customer trial downloads, purchase orders, and pre-orders (PII restricted to admins)."
+    },
+    "/admins/{adminEmail}": {
+      "schema": { "$ref": "#/entities/AdminUser" },
+      "description": "Authorized admin accounts keyed by lowercase email."
+    },
+    "/settings/{settingId}": {
+      "schema": { "$ref": "#/entities/SocialSettings" },
+      "description": "Public site configuration documents such as social media links (/settings/social)."
+    }
+  }
+}

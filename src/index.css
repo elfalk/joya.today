@@ -1,0 +1,177 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-arabic: 'Cairo', system-ui, -apple-system, sans-serif;
+    --font-editorial: 'Bodoni Moda', Georgia, serif;
+    --font-mono-num: 'Space Mono', monospace;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-family: var(--font-arabic);
+  }
+
+  body {
+    font-family: var(--font-arabic);
+    overflow-x: clip;
+  }
+}
+
+.font-editorial {
+  font-family: var(--font-editorial);
+}
+
+.font-arabic {
+  font-family: var(--font-arabic);
+}
+
+.font-mono-num {
+  font-family: var(--font-mono-num);
+  font-variant-numeric: tabular-nums;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+.editorial-outline-text {
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(11, 50, 91, 0.25);
+}
+
+.editorial-outline-text-gold {
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(217, 155, 38, 0.55);
+}
+
+/* Double-hairline notched gold frame matching editorial reference */
+.joya-gold-frame {
+  position: relative;
+  border: 2px solid #D99B26;
+}
+
+.joya-gold-frame::after {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border: 1px solid rgba(217, 155, 38, 0.45);
+  pointer-events: none;
+}
+
+/* Split-text roll hover effect for clip-path menu */
+.menu-roll-item {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  line-height: 1.5;
+  padding-block: 3px;
+}
+
+.menu-roll-item span {
+  display: block;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.menu-roll-item .roll-clone {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  padding-block: 3px;
+  color: #D99B26;
+}
+
+.menu-roll-item:hover .roll-primary {
+  transform: translateY(-100%);
+}
+
+.menu-roll-item:hover .roll-clone {
+  transform: translateY(-100%);
+}
+
+/* 4-layer editorial paint sweep matching reference tUdqrq_placeCard */
+.joya-paint-card {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), color 0.18s cubic-bezier(0.16, 1, 0.3, 1) 0.12s;
+}
+
+.joya-paint-layer {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  transform-origin: top;
+  transform: scaleY(0);
+  pointer-events: none;
+  will-change: transform;
+  transition: transform 0.32s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.joya-paint-layer:nth-child(1) { background: #f7b538; transition-delay: 0.135s; }
+.joya-paint-layer:nth-child(2) { background: #c98f2e; transition-delay: 90ms; }
+.joya-paint-layer:nth-child(3) { background: #145a86; transition-delay: 45ms; }
+.joya-paint-layer:nth-child(4) { background: #08335d; transition-delay: 0s; }
+
+@media (hover: hover) and (pointer: fine) {
+  .joya-paint-card:hover {
+    transform: translateY(-6px);
+    color: #f7b538;
+  }
+  .joya-paint-card:hover .joya-paint-layer {
+    transform: scaleY(1);
+  }
+  .joya-paint-card:hover .joya-paint-layer:nth-child(1) { transition-delay: 0s; }
+  .joya-paint-card:hover .joya-paint-layer:nth-child(2) { transition-delay: 45ms; }
+  .joya-paint-card:hover .joya-paint-layer:nth-child(3) { transition-delay: 90ms; }
+  .joya-paint-card:hover .joya-paint-layer:nth-child(4) { transition-delay: 0.135s; }
+}
+
+/* Draggable architecture card desktop centering wrapper */
+@media (min-width: 768px) {
+  .joya-stage-card-wrap {
+    position: absolute;
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* Creative sculptural Y facet pulse & cyan wireframe pulse */
+@keyframes joyaWireFlow {
+  0% {
+    stroke-dashoffset: 260;
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0.4;
+  }
+}
+
+@keyframes joyaFacetPulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.72;
+  }
+}
+
+.joya-wire-flow {
+  stroke-dasharray: 44 216;
+  animation: joyaWireFlow 3.4s linear infinite;
+}
+
+.joya-facet-pulse {
+  animation: joyaFacetPulse 3.6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

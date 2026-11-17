@@ -1,0 +1,6 @@
+{
+  "name": "JOYA.TODAY — Business Today",
+  "description": "منصة JOYA.TODAY المتكاملة لأنظمة إدارة الأعمال ونقاط البيع — 28 نظاماً احترافياً لإدارة كافة الأنشطة التجارية.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
